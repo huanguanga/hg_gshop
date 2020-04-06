@@ -32,7 +32,7 @@
       </h1>
       <div class="searchArea">
         <form action="###" class="searchForm">
-          <input type="text" id="autocomplete" class="input-error input-xxlarge" />
+          <input type="text" id="autocomplete" class="input-error input-xxlarge"  v-model="keywords"/>
           <button class="sui-btn btn-xlarge btn-danger" type="button" @click="toSearch">搜索</button>
         </form>
       </div>
@@ -43,9 +43,20 @@
 <script>
 export default {
   name: "Header",
+  data(){
+    return{
+      keywords:''
+    }
+  },
   methods:{
     toSearch(){
-      this.$router.push('/search')
+      //query参数
+      // this.$router.push(`/search?keywords=${this.keywords}`)
+      // this.$router.push({ path:'/search',query:{keywords:this.keywords} })  //当传递的是params参数的时候,此处不能用path,需要用name
+      //params参数
+      // this.$router.push(`/search/${this.keywords}`)
+      this.$router.push({name:'search',params:{keywords:this.keywords}})
+
     },
   }
 };

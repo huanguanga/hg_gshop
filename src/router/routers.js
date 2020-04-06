@@ -10,8 +10,10 @@ export default [
     component:Home
   },
   {
-    path:'/search',
-    component:Search
+    name:'search',   
+    path:'/search/:keywords?',  //params参数  ? 代表params参数可传可不传
+    component:Search,
+    props:(route)=>({keywords1:route.params.keywords,keywords2:route.query.keywords})
   },
   {
     path:'/register',
